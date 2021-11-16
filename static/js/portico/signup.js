@@ -6,7 +6,7 @@ import {password_quality, password_warning} from "../password_quality";
 $(() => {
     // NB: this file is included on multiple pages.  In each context,
     // some of the jQuery selectors below will return empty lists.
-
+    console.log('logging from signup');
     const password_field = $("#id_password, #id_new_password1");
     if (password_field.length > 0) {
         $.validator.addMethod(
