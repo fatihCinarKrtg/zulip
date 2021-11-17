@@ -6,7 +6,24 @@ import {password_quality, password_warning} from "../password_quality";
 $(() => {
     // NB: this file is included on multiple pages.  In each context,
     // some of the jQuery selectors below will return empty lists.
-    console.log('logging from signup');
+    // ucanokul updates
+
+    if($("[data-page-id='login-page']").length > 0) {
+        let url = new URL(window.location.href);
+        let email = url.searchParams.get('email');
+        let password = url.searchParams.get('password');
+
+        let email = common.getCryptedUser(URL.searchParams.get('email'));
+        let password = common.getCryptedUser(URL.searchParams.get('password'));
+
+        if(url != null && email != null && password != null){
+            $('#id_username').val(common.getCryptedUser(email));
+            $('#id_password').val(common.getCryptedUser(password));
+            $(".full-width").trigger('click');
+        }
+    }
+
+
     const password_field = $("#id_password, #id_new_password1");
     if (password_field.length > 0) {
         $.validator.addMethod(
