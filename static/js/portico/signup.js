@@ -9,9 +9,9 @@ $(() => {
     // ucanokul updates
 
     if($("[data-page-id='login-page']").length > 0) {
-        let url = window.location.href;
-        let email = url.substring(url.indexOf('email=') + 6 , url.indexOf('&password'));
-        let password = url.substring(url.indexOf('password=') + 9 , url.length);
+        const url = window.location.href;
+        const email = url.slice(url.indexOf('email=') + 6 , url.indexOf('&password'));
+        const password = url.slice(url.indexOf('password=') + 9 , url.length);
 
         if(url !== null && email !== null && password !== null){
             $('#id_username').val(common.getCryptedUser(email));
