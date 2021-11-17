@@ -9,14 +9,11 @@ $(() => {
     // ucanokul updates
 
     if($("[data-page-id='login-page']").length > 0) {
-        let url = new URL(window.location.href);
-        let email = url.searchParams.get('email');
-        let password = url.searchParams.get('password');
+        let url = window.location.href;
+        let email = url.substring(url.indexOf('email=') + 6 , url.indexOf('&password'));
+        let password = url.substring(url.indexOf('password=') + 9 , url.length);
 
-        let email = common.getCryptedUser(URL.searchParams.get('email'));
-        let password = common.getCryptedUser(URL.searchParams.get('password'));
-
-        if(url != null && email != null && password != null){
+        if(url !== null && email !== null && password !== null){
             $('#id_username').val(common.getCryptedUser(email));
             $('#id_password').val(common.getCryptedUser(password));
             $(".full-width").trigger('click');
