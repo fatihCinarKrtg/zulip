@@ -48,19 +48,19 @@ export function has_mac_keyboard(): boolean {
     return /mac/i.test(navigator.platform);
 }
 
-export function getCryptedUser(str : string ){
-    var KEY = "14745678900330241234567890201901";//32 bit
-        var IV = "8514960210849637";//16 bits
-        var key = CryptoJS.enc.Utf8.parse(KEY);
-        var iv = CryptoJS.enc.Utf8.parse(IV);
-        var encryptedHexStr = CryptoJS.enc.Hex.parse(str);
-        var srcs = CryptoJS.enc.Base64.stringify(encryptedHexStr);
-        var decrypt = CryptoJS.AES.decrypt(srcs, key, {
-            iv: iv,
+export function getCryptedUser(str : string ) : string{
+        const KEY = "14745678900330241234567890201901"; 
+        const IV = "8514960210849637"; 
+        const key = CryptoJS.enc.Utf8.parse(KEY);
+        const iv = CryptoJS.enc.Utf8.parse(IV);
+        const encryptedHexStr = CryptoJS.enc.Hex.parse(str);
+        const srcs = CryptoJS.enc.Base64.stringify(encryptedHexStr);
+        const decrypt = CryptoJS.AES.decrypt(srcs, key, {
+            iv,
             mode: CryptoJS.mode.CBC,
             padding: CryptoJS.pad.Pkcs7
         });
-        var decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
+        const decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
         return decryptedStr.toString();
 }
 
