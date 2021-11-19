@@ -43,8 +43,7 @@ export function initialize() {
             instance.setContent(
                 render_left_sidebar_stream_setting_popover({
                     can_create_streams:
-                        settings_data.user_can_create_private_streams() ||
-                        settings_data.user_can_create_public_streams(),
+                        settings_data.user_can_unsubscribe_other_users()
                 }),
             );
             left_sidebar_stream_setting_popover_displayed = false;

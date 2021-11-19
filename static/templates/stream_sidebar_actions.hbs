@@ -14,12 +14,7 @@
     <hr />
 
     {{! tabindex="0" Makes anchor tag focusable. Needed for keyboard support. }}
-    <li>
-        <a tabindex="0" class="open_stream_settings">
-            <i class="fa fa-cog" aria-hidden="true"></i>
-            {{t "Stream settings" }}
-        </a>
-    </li>
+  
     <li class="hidden-for-spectators">
         <a tabindex="0" class="pin_to_top">
             <i class="fa fa-thumb-tack stream-pin-icon" aria-hidden="true"></i>
@@ -53,12 +48,7 @@
             {{t "New topic" }}
         </a>
     </li>
-    <li class="hidden-for-spectators">
-        <a tabindex="0" class="popover_sub_unsub_button" data-name="{{stream.name}}">
-            <i class='fa fa-envelope' aria-hidden="true"></i>
-            {{t "Unsubscribe" }}
-        </a>
-    </li>
+    
     <li class="hidden-for-spectators">
         <span class="colorpicker-container"><input stream_id="{{stream.stream_id}}" class="colorpicker" type="text" value="{{stream.color}}" /></span>
         <a tabindex="0" class="choose_stream_color">
