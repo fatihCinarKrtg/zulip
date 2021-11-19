@@ -47,7 +47,7 @@ export function initialize() {
                         settings_data.user_can_create_public_streams(),
                 }),
             );
-            left_sidebar_stream_setting_popover_displayed = true;
+            left_sidebar_stream_setting_popover_displayed = false;
             $(instance.popper).one("click", instance.hide);
         },
         onHidden() {

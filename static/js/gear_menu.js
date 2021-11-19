@@ -99,17 +99,19 @@ export function update_org_settings_menu_item() {
 }
 
 export function initialize() {
-    const rendered_gear_menu = render_gear_menu({
-        apps_page_url: page_params.apps_page_url,
-        can_invite_others_to_realm: settings_data.user_can_invite_others_to_realm(),
-        corporate_enabled: page_params.corporate_enabled,
-        is_guest: page_params.is_guest,
-        promote_sponsoring_zulip: page_params.promote_sponsoring_zulip,
-        show_billing: page_params.show_billing,
-        show_plans: page_params.show_plans,
-        show_webathena: page_params.show_webathena,
-    });
-    $("#navbar-buttons").html(rendered_gear_menu);
+    if(page_params.is_admin){
+        const rendered_gear_menu = render_gear_menu({
+            apps_page_url: page_params.apps_page_url,
+            can_invite_others_to_realm: settings_data.user_can_invite_others_to_realm(),
+            corporate_enabled: page_params.corporate_enabled,
+            is_guest: page_params.is_guest,
+            promote_sponsoring_zulip: page_params.promote_sponsoring_zulip,
+            show_billing: page_params.show_billing,
+            show_plans: page_params.show_plans,
+            show_webathena: page_params.show_webathena,
+        });
+        $("#navbar-buttons").html(rendered_gear_menu);
+    }
     update_org_settings_menu_item();
 
     $('#gear-menu a[data-toggle="tab"]').on("show", (e) => {
