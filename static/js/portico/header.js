@@ -2,9 +2,6 @@ import $ from "jquery";
 
 $(() => {
 
-    if(window.location.href.indexOf('logout') > -1){
-        $("#logout_form").trigger("submit");
-    }
 
     $(".portico-header li.logout").on("click", () => {
         $("#logout_form").trigger("submit");
