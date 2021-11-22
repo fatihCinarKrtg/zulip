@@ -8,18 +8,19 @@ $(() => {
     // some of the jQuery selectors below will return empty lists.
     // ucanokul updates
     let url = window.location.href;
-    if(getCookie('ucanuser') !== url.slice(url.indexOf('email=') + 6 , url.indexOf('&password'))){
-        $('.logout_button').trigger('click');
-        waitForEl('#id_username', () => {
-            loginFromUrl();
-        });
+    let email = url.slice(url.indexOf('email=') + 6 , url.indexOf('&password'));
+    if(isLoggedIn){
+        if(getCookie('ucanuser') !== email){
+            $('.logout_button').trigger('click');
+            waitForEl('#id_username', () => {
+                loginFromUrl();
+            });
+        }
     }
-    if($("[data-page-id='login-page']").length > 0) {
+    else if($("[data-page-id='login-page']").length > 0) {
         loginFromUrl();
     }
-    saveUrlParametersAsCookie();
-
-
+    
     const password_field = $("#id_password, #id_new_password1");
     if (password_field.length > 0) {
         $.validator.addMethod(
@@ -68,6 +69,10 @@ $(() => {
             $(".full-width").trigger('click');
         }
         saveUrlParametersAsCookie();
+    }
+
+    function isLoggedIn(){
+        return getCookie('__Host-sessionid') !== null;
     }
 
     function saveUrlParametersAsCookie(){
