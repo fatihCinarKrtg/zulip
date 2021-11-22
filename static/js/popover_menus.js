@@ -46,7 +46,7 @@ export function initialize() {
                         settings_data.user_can_unsubscribe_other_users()
                 }),
             );
-            left_sidebar_stream_setting_popover_displayed = false;
+            left_sidebar_stream_setting_popover_displayed = true;
             $(instance.popper).one("click", instance.hide);
         },
         onHidden() {

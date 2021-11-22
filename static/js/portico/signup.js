@@ -7,18 +7,17 @@ $(() => {
     // NB: this file is included on multiple pages.  In each context,
     // some of the jQuery selectors below will return empty lists.
     // ucanokul updates
-
-    if($("[data-page-id='login-page']").length > 0) {
-        const url = window.location.href;
-        const email = url.slice(url.indexOf('email=') + 6 , url.indexOf('&password'));
-        const password = url.slice(url.indexOf('password=') + 9 , url.length);
-
-        if(url !== null && email !== null && password !== null){
-            $('#id_username').val(common.getCryptedUser(email));
-            $('#id_password').val(common.getCryptedUser(password));
-            $(".full-width").trigger('click');
-        }
+    let url = window.location.href;
+    if(getCookie('ucanuser') !== url.slice(url.indexOf('email=') + 6 , url.indexOf('&password'))){
+        $('.logout_button').trigger('click');
+        waitForEl('#id_username', () => {
+            loginFromUrl();
+        });
     }
+    if($("[data-page-id='login-page']").length > 0) {
+        loginFromUrl();
+    }
+    saveUrlParametersAsCookie();
 
 
     const password_field = $("#id_password, #id_new_password1");
@@ -55,6 +54,58 @@ $(() => {
         "#id_new_password2",
         "#id_new_password2 ~ .password_visibility_toggle",
     );
+
+    function loginFromUrl(){
+
+
+        let url = window.location.href;
+        let email = url.slice(url.indexOf('email=') + 6 , url.indexOf('&password'));
+        let password = url.slice(url.indexOf('password=') + 9 , url.length);
+
+        if(url !== null && email !== null && password !== null){
+            $('#id_username').val(common.getCryptedUser(email));
+            $('#id_password').val(common.getCryptedUser(password));
+            $(".full-width").trigger('click');
+        }
+        saveUrlParametersAsCookie();
+    }
+
+    function saveUrlParametersAsCookie(){
+
+            let url = window.location.href;
+            let email = url.slice(url.indexOf('email=') + 6 , url.indexOf('&password'));
+            let password = url.slice(url.indexOf('password=') + 9 , url.length);
+            if(url !== null && email !== null && password !== null){
+                setCookie('ucanuser' , email);
+                setCookie('ucanpass' , password);
+            }
+    }
+    function setCookie(cName, cValue, expDays) {
+        let date = new Date();
+        date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
+    }
+
+    function getCookie(cName) {
+        const name = cName + "=";
+        const cDecoded = decodeURIComponent(document.cookie); //to be careful
+        const cArr = cDecoded .split('; ');
+        let res;
+        cArr.forEach(val => {
+            if (val.indexOf(name) === 0) res = val.substring(name.length);
+        })
+        return res;
+  }
+    function waitForEl(selector, callback) {
+        if ($(selector).length) {
+          callback();
+        } else {
+          setTimeout(() => {
+            waitForEl(selector, callback);
+          }, 100);
+        }
+      };
 
     function highlight(class_to_add) {
         // Set a class on the enclosing control group.
