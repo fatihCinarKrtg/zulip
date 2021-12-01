@@ -2,7 +2,7 @@ import $ from "jquery";
 
 import render_user_presence_row from "../templates/user_presence_row.hbs";
 import render_user_presence_rows from "../templates/user_presence_rows.hbs";
-
+import {page_params} from "./page_params";
 import * as blueslip from "./blueslip";
 import * as buddy_data from "./buddy_data";
 import * as message_viewport from "./message_viewport";
@@ -17,7 +17,7 @@ class BuddyListConf {
 
     items_to_html(opts) {
         const user_info = opts.items;
-        const html = render_user_presence_rows({users: user_info});
+        const html = render_user_presence_rows({users: user_info , is_admin : page_params.is_admin });
         return html;
     }
 
