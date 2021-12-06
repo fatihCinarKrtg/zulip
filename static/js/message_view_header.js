@@ -56,8 +56,13 @@ function make_message_view_header(filter) {
             {defaultMessage: "This stream has {count} subscribers."},
             {count: message_view_header.sub_count, title: message_view_header.title},
         );
-        message_view_header.stream_settings_link =
+        if(page_params.is_admin){
+            message_view_header.stream_settings_link =
             "#streams/" + current_stream.stream_id + "/" + current_stream.name;
+        }
+        else{
+            message_view_header.stream_settings_link = "#";
+        }
     }
     return message_view_header;
 }
@@ -73,13 +78,11 @@ export function colorize_message_view_header() {
 function append_and_display_title_area(message_view_header_data) {
     const message_view_header_elem = $("#message_view_header");
     message_view_header_elem.empty();
-    if(page_params.is_admin){
         const rendered = render_message_view_header(message_view_header_data);
         message_view_header_elem.append(rendered);
         if (message_view_header_data.stream_settings_link) {
             colorize_message_view_header();
         }
-    }
     message_view_header_elem.removeClass("notdisplayed");
     const content = message_view_header_elem.find("span.rendered_markdown");
     if (content) {
