@@ -56,8 +56,13 @@ function make_message_view_header(filter) {
             {defaultMessage: "This stream has {count} subscribers."},
             {count: message_view_header.sub_count, title: message_view_header.title},
         );
-        message_view_header.stream_settings_link =
-            "#streams/" + current_stream.stream_id + "/" + current_stream.name;
+        if(page_params.is_admin){
+            message_view_header.stream_settings_link =
+                "#streams/" + current_stream.stream_id + "/" + current_stream.name;
+        }
+        else{
+            message_view_header.stream_settings_link = "#";
+        }
     }
     return message_view_header;
 }

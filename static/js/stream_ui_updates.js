@@ -202,7 +202,7 @@ export function update_add_subscriptions_elements(sub) {
         return;
     }
 
-    if (page_params.is_guest || page_params.realm_is_zephyr_mirror_realm) {
+    if (!page_params.is_admin) {
         // For guest users, we just hide the add_subscribers feature.
         $(".add_subscribers_container").hide();
         return;
