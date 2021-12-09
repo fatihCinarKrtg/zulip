@@ -58,7 +58,7 @@ function make_message_view_header(filter) {
         );
         if(page_params.is_admin){
             message_view_header.stream_settings_link =
-            "#streams/" + current_stream.stream_id + "/" + current_stream.name;
+                "#streams/" + current_stream.stream_id + "/" + current_stream.name;
         }
         else{
             message_view_header.stream_settings_link = "#";
