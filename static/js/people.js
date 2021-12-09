@@ -1321,6 +1321,10 @@ export function is_current_user(email) {
     return email.toLowerCase() === my_current_email().toLowerCase();
 }
 
+export function is_admin(){
+    return page.params.is_admin;
+}
+
 export function initialize_current_user(user_id) {
     my_user_id = user_id;
 }

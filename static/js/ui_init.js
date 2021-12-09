@@ -141,7 +141,7 @@ function message_hover(message_row) {
 
 function initialize_left_sidebar() {
     const rendered_sidebar = render_left_sidebar({
-        is_guest: page_params.is_admin,
+        is_guest: page_params.is_guest,
     });
 
     $("#left-sidebar-container").html(rendered_sidebar);
