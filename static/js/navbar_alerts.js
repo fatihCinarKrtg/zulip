@@ -54,7 +54,7 @@ const get_step = function ($process) {
 export function should_show_notifications(ls) {
     // if the user said to never show banner on this computer again, it will
     // be stored as `true` so we want to negate that.
-    if (!page.page_params.is_admin) {
+    if (!page_params.is_admin) {
         return false;
     }
 
