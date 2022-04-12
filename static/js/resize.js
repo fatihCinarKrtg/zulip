@@ -45,7 +45,7 @@ function get_new_heights() {
     const right_sidebar_shorcuts_height = $(".right-sidebar-shortcuts").safeOuterHeight(true) || 0;
     const add_streams_link_height = $("#add-stream-link").safeOuterHeight(true) || 0;
 
-    res.bottom_whitespace_height = viewport_height * 0.4;
+    res.bottom_whitespace_height = viewport_height * 0.2;
 
     res.main_div_min_height = viewport_height - top_navbar_height;
 
@@ -199,7 +199,7 @@ export function resize_bottom_whitespace(h) {
 
 export function resize_stream_filters_container(h) {
     h = narrow_window ? left_userlist_get_new_heights() : get_new_heights();
-    resize_bottom_whitespace(h);
+    resize_bottom_whitespace(0);
     $("#stream-filters-container").css("max-height", h.stream_filters_max_height);
 }
 
