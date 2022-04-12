@@ -199,7 +199,7 @@ export function resize_bottom_whitespace(h) {
 
 export function resize_stream_filters_container(h) {
     h = narrow_window ? left_userlist_get_new_heights() : get_new_heights();
-    resize_bottom_whitespace(h);
+    resize_bottom_whitespace(0);
     $("#stream-filters-container").css("max-height", h.stream_filters_max_height);
 }
 
